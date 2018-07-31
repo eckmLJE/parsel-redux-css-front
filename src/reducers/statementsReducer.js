@@ -1,4 +1,4 @@
-const statements = (
+const statementsReducer = (
   state = {
     currentStatement: null,
     availableStatements: [],
@@ -28,4 +28,4 @@ const statements = (
   }
 };
 
-export default statements;
+export default statementsReducer;
