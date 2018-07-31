@@ -1,3 +1,34 @@
+button {
+  display: block;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  text-decoration: none;
+  background: #0069ed;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+  background: #0053ba;
+}
+
+button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
 .app {
   width: 100%;
   background-color: rgba(24, 24, 24, 0.144);
@@ -51,6 +82,7 @@
 }
 
 .anno {
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
   position: absolute;
   left: 0;
   border-style: solid;
@@ -64,6 +96,7 @@
 }
 
 .anno-label {
+  /* position: sticky; */
   z-index: 5;
   width: 50px;
   height: 20px;
@@ -78,8 +111,27 @@
   user-select: none;
 }
 
-.anno-popup {
-  width: 200px;
-  height: 100px;
+.select-popup {
+  z-index: 20;
+  max-width: 100%;
+  max-height: 100%;
   background-color: white;
+  user-select: none;
+}
+
+.select-header {
+  display: block;
+  font-weight: 500;
+  font-size: 1em;
+  padding: 5px 0px 5px 0px;
+}
+
+.select-input {
+  padding: 5px;
+}
+
+.select-popup-submit {
+  margin: auto;
+  float: right;
+  padding: 5px;
 }

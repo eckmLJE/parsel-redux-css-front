@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+
 import AnnoLabel from "../components/AnnoLabel";
+import SelectPopup from "../components/SelectPopup";
 
 class StatementView extends Component {
   statement =
@@ -9,22 +11,9 @@ class StatementView extends Component {
 
   state = { selectionPopup: false, popupX: null, popupY: null };
 
-  renderSelectPopup = () => {
-    return (
-      <div
-        className="anno anno-card"
-        style={{
-          position: "absolute",
-          top: `${this.state.popupY}px`,
-          left: `${this.state.popupX}px`
-        }}
-      />
-    );
-  };
-
   handleSelect = e => {
     console.log(window.getSelection(), e.target.getBoundingClientRect());
-    const clientRect = e.target.getBoundingClientRect()
+    const clientRect = e.target.getBoundingClientRect();
     const selection = window.getSelection();
     const x = e.clientX - clientRect.left;
     const y = e.clientY - clientRect.top;
@@ -32,7 +21,7 @@ class StatementView extends Component {
       ? this.setState({
           selectionPopup: true,
           popupX: x - 100,
-          popupY: y + 25
+          popupY: y + 70
         })
       : this.setState({ selectionPopup: false });
   };
@@ -40,7 +29,7 @@ class StatementView extends Component {
   render() {
     return (
       <div className="statement-view">
-        {this.state.selectionPopup ? this.renderSelectPopup() : null}
+        {this.state.selectionPopup ? <SelectPopup pos={this.state} /> : null}
         <div className="statement-header">{this.statementHeader}</div>
         <div onMouseUp={this.handleSelect} className="statement">
           {this.statement}
