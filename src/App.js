@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
+
+import { Route } from "react-router-dom";
+
 import HeaderLogo from "./components/HeaderLogo";
-import StatementView from "./containers/StatementView";
+import Home from "./views/Home";
+import StatementView from "./views/StatementView";
 
 class App extends Component {
   render() {
@@ -9,7 +13,8 @@ class App extends Component {
       <div className="app">
         <div className="app-column">
           <HeaderLogo />
-          <StatementView />
+          <Route exact path="/" component={Home} />
+          <Route path="/statement/:id" component={StatementView} />
         </div>
       </div>
     );
