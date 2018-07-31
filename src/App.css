@@ -1,0 +1,85 @@
+.app {
+  width: 100%;
+  background-color: rgba(24, 24, 24, 0.144);
+  height: 100%px;
+}
+
+.app-column {
+  width: 900px;
+  height: 100%;
+  background-color: white;
+  margin: auto;
+}
+
+.header-logo {
+  display: block;
+  margin: auto;
+  height: 100px;
+}
+
+.statement-view {
+  margin-top: 20px;
+  position: relative;
+  display: block;
+  width: 65%;
+  text-align: justify;
+  left: 10%;
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.statement {
+  display: block;
+  position: relative;
+  width: 90%;
+  font-size: 1.1em;
+  line-height: 1.3em;
+}
+
+.statement-header {
+  display: block;
+  position: relative;
+  width: 90%;
+  font-size: 1.5em;
+  line-height: 1.7em;
+  margin-bottom: 0.2em;
+}
+
+.statement-rail {
+  position: absolute;
+  left: 95%;
+  top: 0;
+}
+
+.anno {
+  position: absolute;
+  left: 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.26);
+  border-width: 1px;
+  cursor: default;
+  opacity: 1;
+  box-shadow: 0 0 0 1px #d4d4d5, 0 1px 3px 0 #d4d4d5;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.anno-label {
+  z-index: 5;
+  width: 50px;
+  height: 20px;
+  user-select: none;
+}
+
+.anno-card {
+  z-index: 20;
+  width: 200px;
+  height: 100px;
+  background-color: white;
+  user-select: none;
+}
+
+.anno-popup {
+  width: 200px;
+  height: 100px;
+  background-color: white;
+}
