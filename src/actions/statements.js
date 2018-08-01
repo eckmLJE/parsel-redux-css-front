@@ -7,7 +7,13 @@ export const setCurrentStatement = statementId => {
     dispatch({ type: "START_FETCHING_STATEMENT_REQUEST" });
     return fetch(statementsUrl + `/${statementId}`)
       .then(res => res.json())
-      .then(json => dispatch({ type: "SET_STATEMENT", statement: json.data }));
+      .then(json => {
+        dispatch({ type: "SET_STATEMENT", statement: json.data });
+        dispatch({
+          type: "SET_CURRENT_ANNOTATIONS",
+          annotations: json.data.attributes.annotations
+        });
+      });
   };
 };
 

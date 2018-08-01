@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+
+import { connect } from "react-redux"
+
 import SelectPopup from "../components/SelectPopup";
 import HighlightSpan from "../components/HighlightSpan";
 import TextFragment from "../components/TextFragment";
@@ -54,7 +57,7 @@ class StatementViewContent extends Component {
     let highlights = [];
     let lastEnd = 0;
     let currentAnnotations = this.mapConvertAnnotations(
-      this.props.statement.attributes.annotations
+      this.props.currentAnnotations
     );
     currentAnnotations = currentAnnotations.sort((a, b) => a.start > b.start);
     currentAnnotations.forEach(annotation => {
@@ -154,4 +157,11 @@ class StatementViewContent extends Component {
   }
 }
 
-export default StatementViewContent;
+const mapStateToProps = state => ({
+  currentAnnotations: state.annotations.currentAnnotations
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(StatementViewContent);

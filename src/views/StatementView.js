@@ -13,6 +13,9 @@ class StatementView extends Component {
   componentDidMount = () => {
     this.props.setCurrentStatement(this.props.match.params.id);
     this.props.fetchUsers();
+    // this.props.setCurrentAnnotations(
+    //   this.props.currentStatement.attributes.annotations
+    // );
   };
 
   handleRef = node => {
