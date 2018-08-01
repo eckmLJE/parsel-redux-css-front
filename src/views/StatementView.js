@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import { setCurrentStatement } from "../actions/statements";
 import { setBoundingRectY } from "../actions/highlights";
+import { fetchUsers } from "../actions/users";
+import { setCurrentAnnotations } from "../actions/annotations";
 
 import StatementViewContent from "../components/StatementViewContent";
 import AnnotationRail from "../containers/AnnotationRail";
@@ -10,6 +12,7 @@ import AnnotationRail from "../containers/AnnotationRail";
 class StatementView extends Component {
   componentDidMount = () => {
     this.props.setCurrentStatement(this.props.match.params.id);
+    this.props.fetchUsers();
   };
 
   handleRef = node => {
@@ -21,7 +24,9 @@ class StatementView extends Component {
   render() {
     return (
       <div className="statement-view" ref={this.handleRef}>
-        {!this.props.statementLoadingStatus && this.props.currentStatement ? (
+        {!this.props.statementLoadingStatus &&
+        this.props.currentStatement &&
+        this.props.availableUsers.length ? (
           <Fragment>
             <StatementViewContent statement={this.props.currentStatement} />
             <AnnotationRail
@@ -40,13 +45,17 @@ class StatementView extends Component {
 
 const mapStateToProps = state => ({
   currentStatement: state.statements.currentStatement,
-  statementLoadingStatus: state.statements.statementLoadingStatus
+  statementLoadingStatus: state.statements.statementLoadingStatus,
+  availableUsers: state.users.availableUsers
 });
 
 const mapDispatchToProps = dispatch => ({
   setCurrentStatement: statementId =>
     dispatch(setCurrentStatement(statementId)),
-  setBoundingRectY: y => dispatch(setBoundingRectY(y))
+  setBoundingRectY: y => dispatch(setBoundingRectY(y)),
+  fetchUsers: () => dispatch(fetchUsers()),
+  setCurrentAnnotations: annotations =>
+    dispatch(setCurrentAnnotations(annotations))
 });
 
 export default connect(

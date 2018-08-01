@@ -23,7 +23,7 @@ class HighlightSpan extends Component {
       <span
         ref={this.logHighlightPos}
         style={{
-          borderBottom: `solid 5px ${colors[this.props.index]}`
+          borderBottom: `solid 3px ${colors[this.props.index]}`
         }}
         name={this.props.name}
         key={this.props.id}

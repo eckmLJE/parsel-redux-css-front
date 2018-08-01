@@ -9,7 +9,7 @@ class AnnotationRail extends Component {
   componentDidMount = () => {};
 
   getAnnotationById = id => {
-    return this.props.annotations.find(annotation => annotation.id === id);
+    return this.props.currentAnnotations.find(annotation => annotation.id === id);
   };
 
   getUserById = id => {
@@ -26,7 +26,8 @@ class AnnotationRail extends Component {
     return (
       <div className="statement-rail">
         {this.props.currentHighlightPositions.length &&
-        this.props.currentBoundingRectY
+        this.props.currentBoundingRectY &&
+        this.props.currentAnnotations.length
           ? this.props.currentHighlightPositions.map(highlight => (
               <AnnotationRailCard
                 key={highlight.id}
@@ -44,7 +45,8 @@ class AnnotationRail extends Component {
 
 const mapStateToProps = state => ({
   currentHighlightPositions: state.highlights.currentHighlightPositions,
-  currentBoundingRectY: state.highlights.currentBoundingRectY
+  currentBoundingRectY: state.highlights.currentBoundingRectY,
+  currentAnnotations: state.annotations.currentAnnotations
 });
 
 const mapDispatchToProps = dispatch => ({

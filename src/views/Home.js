@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { fetchStatements } from "../actions/statements";
+import { fetchUsers } from "../actions/users";
 
-import HomeStatementList from "../containers/HomeStatementList"
+import HomeStatementList from "../containers/HomeStatementList";
 
 class Home extends Component {
   componentDidMount = () => {
     this.props.fetchStatements();
+    this.props.fetchUsers();
   };
 
   render() {
@@ -30,7 +32,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchStatements: () => dispatch(fetchStatements())
+  fetchStatements: () => dispatch(fetchStatements()),
+  fetchusers: () => dispatch(fetchUsers())
 });
 
 export default connect(

@@ -4,7 +4,12 @@ import HighlightSpan from "../components/HighlightSpan";
 import TextFragment from "../components/TextFragment";
 
 class StatementViewContent extends Component {
-  state = { selectionPopup: false, popupX: null, popupY: null };
+  state = {
+    selectionPopup: false,
+    popupX: null,
+    popupY: null,
+    currentSelection: {}
+  };
 
   handleSelect = e => {
     console.log(window.getSelection(), e.target.getBoundingClientRect());
@@ -16,9 +21,15 @@ class StatementViewContent extends Component {
       ? this.setState({
           selectionPopup: true,
           popupX: x - 100,
-          popupY: y + 50
+          popupY: y + 50,
+          currentSelection: selection
         })
-      : this.setState({ selectionPopup: false });
+      : this.setState({
+          selectionPopup: false,
+          popupX: null,
+          popupY: null,
+          currentSelection: {}
+        });
   };
 
   convertId = id => {
@@ -128,7 +139,12 @@ class StatementViewContent extends Component {
   render() {
     return (
       <div>
-        {this.state.selectionPopup ? <SelectPopup pos={this.state} /> : null}
+        {this.state.selectionPopup ? (
+          <SelectPopup
+            selection={this.state.currentSelection}
+            pos={this.state}
+          />
+        ) : null}
         <div className="statement-header">{this.statementHeader}</div>
         <div onMouseUp={this.handleSelect} className="statement">
           {this.makeStatementArray()}
