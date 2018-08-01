@@ -6,6 +6,7 @@ import { Route } from "react-router-dom";
 import HeaderLogo from "./components/HeaderLogo";
 import Home from "./views/Home";
 import StatementView from "./views/StatementView";
+import BottomBar from "./components/BottomBar";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <HeaderLogo />
           <Route exact path="/" component={Home} />
           <Route path="/statement/:id" component={StatementView} />
+          <BottomBar />
         </div>
       </div>
     );

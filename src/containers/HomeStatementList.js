@@ -5,7 +5,7 @@ import HomeStatementItem from "../components/HomeStatementItem";
 class HomeStatementList extends Component {
   render() {
     return (
-      <div>
+      <div className="home-statement-list">
         {this.props.availableStatements.map(statement => (
           <HomeStatementItem key={statement.id} statement={statement} />
         ))}

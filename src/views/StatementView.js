@@ -29,7 +29,7 @@ class StatementView extends Component {
       <div className="statement-view" ref={this.handleRef}>
         {!this.props.statementLoadingStatus &&
         this.props.currentStatement &&
-        this.props.availableUsers.length ? (
+        !this.props.usersLoadingStatus ? (
           <Fragment>
             <StatementViewContent statement={this.props.currentStatement} />
             <AnnotationRail
@@ -49,7 +49,8 @@ class StatementView extends Component {
 const mapStateToProps = state => ({
   currentStatement: state.statements.currentStatement,
   statementLoadingStatus: state.statements.statementLoadingStatus,
-  availableUsers: state.users.availableUsers
+  availableUsers: state.users.availableUsers,
+  usersLoadingStatus: state.users.usersLoadingStatus
 });
 
 const mapDispatchToProps = dispatch => ({
