@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Image, Item } from "semantic-ui-react";
 import HomeStatementItem from "../components/HomeStatementItem";
 
 class HomeStatementList extends Component {
   render() {
     return (
-      <div className="home-statement-list">
+      <Item.Group className="home-statement-list">
         {this.props.availableStatements.map(statement => (
           <HomeStatementItem key={statement.id} statement={statement} />
         ))}
-      </div>
+      </Item.Group>
+      // <div className="home-statement-list">
+      // </div>
     );
   }
 }

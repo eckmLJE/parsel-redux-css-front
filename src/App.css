@@ -43,7 +43,7 @@ button:active {
 }
 
 .home-statement-list {
-  padding: 50px;
+  padding: 25px;
   padding-top: 10px;
 }
 
@@ -137,24 +137,24 @@ button:active {
   font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
   position: absolute;
   left: 0;
-  border-style: solid;
+  /* border-style: solid;
   border-color: rgba(0, 0, 0, 0.26);
-  border-width: 1px;
+  border-width: 1px; */
   cursor: default;
   opacity: 1;
-  box-shadow: 0 0 0 1px #d4d4d5, 0 1px 3px 0 #d4d4d5;
-  padding: 5px;
-  border-radius: 5px;
+  /* box-shadow: 0 0 0 1px #d4d4d5, 0 1px 3px 0 #d4d4d5; */
+  /* padding: 5px; */
+  /* border-radius: 5px; */
   background-color: white;
 }
 
 .anno-label {
   /* position: sticky; */
-  z-index: 5;
+  /* z-index: 5;*/
   width: 275px;
-  height: 20px;
+  /* height: 20px;  */
   user-select: none;
-  line-height: 1em;
+  /* line-height: 1em; */
 }
 
 .anno-label-user {

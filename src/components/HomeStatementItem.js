@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
+import { Item } from "semantic-ui-react";
 
 import { navToStatement } from "../actions/statements";
 
@@ -12,18 +13,32 @@ class HomeStatementItem extends Component {
   render() {
     const statementAttributes = this.props.statement.attributes;
     return (
-      <div className="home-statement-item" onClick={this.handleClick}>
-        <div className="home-statement-item-title">
-          {this.props.statement.attributes.title}
-        </div>
-        <div className="home-statement-item-politician">
-          {statementAttributes.politician.name +
-            ` (${statementAttributes.politician.party})`}
-        </div>
-        <div className="home-statement-item-date">
-          {moment(statementAttributes.datetime).format("MMMM Do YYYY")}
-        </div>
-      </div>
+      <Item>
+        <Item.Image size="tiny" src="" />
+        <Item.Content>
+          <Item.Header as="a" onClick={this.handleClick}>
+            {this.props.statement.attributes.title}
+          </Item.Header>
+          <Item.Meta>
+            {statementAttributes.politician.name +
+              ` (${statementAttributes.politician.party})`}
+          </Item.Meta>
+          <Item.Extra>
+            {moment(statementAttributes.datetime).format("MMMM Do YYYY")}
+          </Item.Extra>
+        </Item.Content>
+      </Item>
+      // <div className="home-statement-item" onClick={this.handleClick}>
+      //   <div className="home-statement-item-title">
+
+      //   </div>
+      //   <div className="home-statement-item-politician">
+
+      //   </div>
+      //   <div className="home-statement-item-date">
+
+      //   </div>
+      // </div>
     );
   }
 }
