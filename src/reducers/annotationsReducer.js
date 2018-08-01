@@ -20,7 +20,8 @@ const annotationsReducer = (
     case "ADD_POSTED_ANNOTATION":
       return {
         ...state,
-        currentAnnotations: [...state.currentAnnotations, action.annotation]
+        currentAnnotations: [...state.currentAnnotations, action.annotation],
+        annotationLoadingStatus: false
       };
     case "CLEAR_EXPANDED_ANNOTATION":
       return {
@@ -28,7 +29,10 @@ const annotationsReducer = (
         currentExpandedAnnotation: null
       };
     case "START_POSTING_ANNOTATION_REQUEST":
-      return {};
+      return {
+        ...state,
+        annotationLoadingStatus: true
+      };
     default:
       return state;
   }

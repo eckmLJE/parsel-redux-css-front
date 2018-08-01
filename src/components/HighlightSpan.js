@@ -26,7 +26,6 @@ class HighlightSpan extends Component {
           borderBottom: `solid 3px ${colors[this.props.index]}`
         }}
         name={this.props.name}
-        key={this.props.id}
       >
         {this.props.content}
       </span>

@@ -10,13 +10,15 @@ class SelectPopup extends Component {
     this.setState({ annotationInput: e.target.value });
   };
 
-  handleSubmit = () => {
+  handleSubmit = e => {
+    e.preventDefault();
     const annotationObj = {
       content: this.state.annotationInput,
       statement_id: this.props.currentStatement.id,
-      user_id: this.props.currentUser,
-      start: "",
-      end: ""
+      user_id: this.props.currentUserId,
+      start: 700,
+      end: 900,
+      points: 0
     };
     this.props.postAnnotation(annotationObj);
   };
@@ -49,7 +51,7 @@ class SelectPopup extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.users.currentUser,
+  currentUserId: state.users.currentUserId,
   currentStatement: state.statements.currentStatement
 });
 

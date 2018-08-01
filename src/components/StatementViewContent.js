@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 
 import SelectPopup from "../components/SelectPopup";
 import HighlightSpan from "../components/HighlightSpan";
@@ -47,8 +47,8 @@ class StatementViewContent extends Component {
       start: annotation.start,
       end: annotation.end,
       content: annotation.content,
-      statementId: annotation["statement_id"].toString(),
-      user: annotation["user_id"],
+      statementId: annotation.statement_id.toString(),
+      user: annotation.user_id,
       points: annotation.points
     }));
   };
@@ -149,16 +149,19 @@ class StatementViewContent extends Component {
           />
         ) : null}
         <div className="statement-header">{this.statementHeader}</div>
-        <div onMouseUp={this.handleSelect} className="statement">
-          {this.makeStatementArray()}
-        </div>
+        {!this.props.annotationLoadingStatus ? (
+          <div onMouseUp={this.handleSelect} className="statement">
+            {this.makeStatementArray()}
+          </div>
+        ) : null}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  currentAnnotations: state.annotations.currentAnnotations
+  currentAnnotations: state.annotations.currentAnnotations,
+  annotationLoadingStatus: state.annotations.annotationLoadingStatus
 });
 
 export default connect(

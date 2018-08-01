@@ -1,4 +1,3 @@
-
 const annotationsUrl = "http://localhost:3000/api/v1/annotations";
 
 export const setExpandedAnnotation = id => ({
@@ -32,8 +31,18 @@ export const postAnnotation = annotationObj => {
       }
     })
       .then(res => res.json())
-      .then(json =>
-        dispatch({ type: "ADD_POSTED_ANNOTATION", annotation: json.data })
-      );
+      .then(json => {
+        const convertedAnnotation = convertPostedAnnotation(json.data)
+        dispatch(addPostedAnnotation(convertedAnnotation))});
   };
 };
+
+const convertPostedAnnotation = data => ({
+  id: parseInt(data.id, 10),
+  statement_id: data.attributes["statement-id"],
+  user_id: parseInt(data.attributes.user.id, 10),
+  content: data.attributes.content,
+  start: data.attributes.start,
+  end: data.attributes.end,
+  points: data.attributes.points
+});
