@@ -14,6 +14,10 @@ class StatementViewContent extends Component {
     currentSelection: {}
   };
 
+  handleSelectionPopupClose = () => {
+    this.setState({selectionPopup: false})
+  }
+
   handleSelect = e => {
     console.log(window.getSelection(), e.target.getBoundingClientRect());
     const selection = window.getSelection();
@@ -169,6 +173,7 @@ class StatementViewContent extends Component {
           <SelectPopup
             selection={this.state.currentSelection}
             pos={this.state}
+            close={this.handleSelectionPopupClose}
           />
         ) : null}
         <div className="statement-header">{this.statementHeader}</div>

@@ -21,6 +21,7 @@ class SelectPopup extends Component {
       points: 0
     };
     this.props.postAnnotation(annotationObj);
+    this.props.close();
   };
 
   render() {
