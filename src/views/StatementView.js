@@ -13,7 +13,9 @@ class StatementView extends Component {
   };
 
   handleRef = node => {
-    node ? this.props.setBoundingRectY(node.getBoundingClientRect().y) : this.props.setBoundingRectY(0);
+    node
+      ? this.props.setBoundingRectY(node.getBoundingClientRect().y)
+      : this.props.setBoundingRectY(0);
   };
 
   render() {
@@ -25,6 +27,7 @@ class StatementView extends Component {
             <AnnotationRail
               annotations={this.props.currentStatement.attributes.annotations}
               users={this.props.currentStatement.attributes.users}
+              comments={this.props.currentStatement.attributes.comments}
             />
           </Fragment>
         ) : (

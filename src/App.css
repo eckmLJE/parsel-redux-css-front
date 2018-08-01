@@ -93,22 +93,71 @@ button:active {
   box-shadow: 0 0 0 1px #d4d4d5, 0 1px 3px 0 #d4d4d5;
   padding: 5px;
   border-radius: 5px;
+  background-color: white;
 }
 
 .anno-label {
   /* position: sticky; */
   z-index: 5;
-  width: 50px;
+  width: 275px;
   height: 20px;
   user-select: none;
+  line-height: 1em;
+}
+
+.anno-label-user {
+  float: left;
+  font-size: 0.8em;
+}
+
+.anno-label-points {
+  float: left;
+  font-size: 0.8em;
 }
 
 .anno-card {
   z-index: 20;
-  width: 200px;
+  width: 275px;
   height: 100px;
-  background-color: white;
   user-select: none;
+}
+
+.anno-card-user {
+  float: left;
+}
+
+.anno-card-user-points {
+  display: inline-block
+}
+
+.anno-card-points {
+  float: left;
+  max-width: 10px;
+}
+
+.anno-expand-button {
+  float: right;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+.anno-card-content {
+  display: block;
+  font-size: 0.75em;
+
+}
+
+.anno-card-expand-comments-button {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+}
+
+.anno-card-comments-card {
 }
 
 .select-popup {

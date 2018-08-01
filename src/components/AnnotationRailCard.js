@@ -1,53 +1,91 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
+import { setExpandedAnnotation } from "../actions/annotations";
+
 class AnnotationRailCard extends Component {
   state = {
-    expanded: false
+    commentsExpanded: false
   };
 
-  handleClick = () => {
+  handleExpandClick = () => {
+    const id = this.props.annotation.id;
+    this.props.setExpandedAnnotation(id);
+    this.setState({ commentsExpanded: false });
+  };
+
+  handleMinimizeClick = () => {
+    this.props.setExpandedAnnotation(null);
+    this.setState({ commentsExpanded: false });
+  };
+
+  handleCommentsClick = () => {
     this.setState({
-      expanded: !this.state.expanded
+      commentsExpanded: !this.state.commentsExpanded
     });
   };
 
   renderLabel = () => (
     <div
-      onClick={this.handleClick}
       className="anno anno-label"
       style={{ top: this.props.yPos - this.props.currentBoundingRectY }}
     >
-      Label
+      <div className="anno-label-user">{this.props.user.username}</div>
+      <div className="anno-label-points">{`(${
+        this.props.annotation.points
+      })`}</div>
+      <div className="anno-expand-button" onClick={this.handleExpandClick}>
+        +
+      </div>
     </div>
   );
 
   renderCard = () => (
     <div
-      onClick={this.handleClick}
       className="anno anno-card"
       style={{ top: this.props.yPos - this.props.currentBoundingRectY }}
     >
-      Card
+      <div className="anno-card-user">{this.props.user.username}</div>
+      <div className="anno-card-user-points">{`(${
+        this.props.annotation.points
+      })`}</div>
+      <div className="anno-expand-button" onClick={this.handleMinimizeClick}>
+        -
+      </div>
+
+      <div className="anno-card-content">{this.props.annotation.content}</div>
+      <div className="anno-card-content-points">
+        {this.props.annotation.points}
+      </div>
+      <div
+        className="anno-card-expand-comments-button"
+        onClick={this.handleCommentsClick}
+      />
+      {this.state.commentsExpanded ? <div className="anno anno-card" /> : null}
     </div>
   );
 
   render() {
     return (
       <Fragment>
-        {this.state.expanded ? this.renderCard() : this.renderLabel()}
+        {this.props.currentExpandedAnnotation === this.props.annotation.id
+          ? this.renderCard()
+          : this.renderLabel()}
       </Fragment>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  currentBoundingRectY: state.highlights.currentBoundingRectY
+  currentBoundingRectY: state.highlights.currentBoundingRectY,
+  currentExpandedAnnotation: state.annotations.currentExpandedAnnotation
 });
 
-// const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  setExpandedAnnotation: id => dispatch(setExpandedAnnotation(id))
+});
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(AnnotationRailCard);

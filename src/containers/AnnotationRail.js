@@ -1,15 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { clearExpandedAnnotation } from "../actions/annotations";
+
 import AnnotationRailCard from "../components/AnnotationRailCard";
 
 class AnnotationRail extends Component {
+  componentDidMount = () => {};
+
   getAnnotationById = id => {
-    console.log(this.props.annotations);
+    return this.props.annotations.find(annotation => annotation.id === id);
   };
 
   getUserById = id => {
-    console.log(this.props.users);
+    return this.props.users.find(
+      user => user.id === this.getAnnotationById(id).user_id
+    );
+  };
+
+  getCommentsById = id => {
+    return this.props.comments.filter(comment => comment.annotation_id === id);
   };
 
   render() {
@@ -19,8 +29,10 @@ class AnnotationRail extends Component {
         this.props.currentBoundingRectY
           ? this.props.currentHighlightPositions.map(highlight => (
               <AnnotationRailCard
+                key={highlight.id}
                 annotation={this.getAnnotationById(highlight.id)}
-                user={this.getUserById()}
+                user={this.getUserById(highlight.id)}
+                comments={this.getCommentsById(highlight.id)}
                 yPos={highlight.position}
               />
             ))
@@ -35,9 +47,11 @@ const mapStateToProps = state => ({
   currentBoundingRectY: state.highlights.currentBoundingRectY
 });
 
-// const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  clearExpandedAnnotation: () => dispatch(clearExpandedAnnotation())
+});
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(AnnotationRail);
