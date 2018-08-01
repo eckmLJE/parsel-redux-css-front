@@ -16,8 +16,8 @@ class SelectPopup extends Component {
       content: this.state.annotationInput,
       statement_id: this.props.currentStatement.id,
       user_id: this.props.currentUserId,
-      start: 700,
-      end: 900,
+      start: this.props.selection.start,
+      end: this.props.selection.end,
       points: 0
     };
     this.props.postAnnotation(annotationObj);

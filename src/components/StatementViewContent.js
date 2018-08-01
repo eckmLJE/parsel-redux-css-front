@@ -16,8 +16,9 @@ class StatementViewContent extends Component {
 
   handleSelect = e => {
     console.log(window.getSelection(), e.target.getBoundingClientRect());
-    const clientRect = e.target.getBoundingClientRect();
     const selection = window.getSelection();
+    const selectionData = this.getSelectionData(selection);
+    const clientRect = e.target.getBoundingClientRect();
     const x = e.clientX - clientRect.left;
     const y = e.clientY - clientRect.top;
     selection.type !== "Caret"
@@ -25,7 +26,7 @@ class StatementViewContent extends Component {
           selectionPopup: true,
           popupX: x - 100,
           popupY: y + 50,
-          currentSelection: selection
+          currentSelection: selectionData
         })
       : this.setState({
           selectionPopup: false,
@@ -33,6 +34,28 @@ class StatementViewContent extends Component {
           popupY: null,
           currentSelection: {}
         });
+  };
+
+  getSelectionData = selection => {
+    const base = selection.baseOffset;
+    const extent = selection.extentOffset;
+    if (!selection.baseNode.previousSibling && selection.type === "Range") {
+      return { start: base, end: extent };
+    } else if (
+      selection.baseNode.previousElementSibling.localName === "span" &&
+      selection.type === "Range"
+    ) {
+      debugger
+      const prevAnnotationId =
+        parseInt(selection.baseNode.previousElementSibling.attributes.name.value, 10) - 1000 ;
+      const prevAnnotation = this.props.currentAnnotations.find(
+        annotation => annotation.id == prevAnnotationId
+      );
+      return {
+        start: prevAnnotation.end + base,
+        end: prevAnnotation.end + extent
+      };
+    }
   };
 
   convertId = id => {
