@@ -49,7 +49,6 @@ class StatementViewContent extends Component {
       selection.baseNode.previousElementSibling.localName === "span" &&
       selection.type === "Range"
     ) {
-      debugger
       const prevAnnotationId =
         parseInt(selection.baseNode.previousElementSibling.attributes.name.value, 10) - 1000 ;
       const prevAnnotation = this.props.currentAnnotations.find(

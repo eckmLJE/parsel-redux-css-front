@@ -15,9 +15,8 @@ class AnnotationRail extends Component {
   };
 
   getUserById = id => {
-    return this.props.currentStatement.attributes.users.find(
-      user => user.id === this.getAnnotationById(id).user_id
-    );
+    let userId = this.getAnnotationById(id).user_id;
+    return this.props.availableUsers.find(user => user.id == userId);
   };
 
   getCommentsById = id => {
@@ -50,7 +49,8 @@ const mapStateToProps = state => ({
   currentBoundingRectY: state.highlights.currentBoundingRectY,
   currentAnnotations: state.annotations.currentAnnotations,
   annotationLoadingStatus: state.annotations.annotationLoadingStatus,
-  currentStatement: state.statements.currentStatement
+  currentStatement: state.statements.currentStatement,
+  availableUsers: state.users.availableUsers
 });
 
 const mapDispatchToProps = dispatch => ({

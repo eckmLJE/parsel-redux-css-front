@@ -44,7 +44,7 @@ export const postAnnotation = annotationObj => {
 
 const convertPostedAnnotation = data => ({
   id: parseInt(data.id, 10),
-  statement_id: data.attributes["statement-id"],
+  statement_id: parseInt(data.attributes["statement-id"], 10),
   user_id: parseInt(data.attributes.user.id, 10),
   content: data.attributes.content,
   start: data.attributes.start,

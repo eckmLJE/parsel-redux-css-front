@@ -33,7 +33,8 @@ class StatementView extends Component {
       <div className="statement-view" ref={this.handleRef}>
         {!this.props.statementLoadingStatus &&
         this.props.currentStatement &&
-        this.props.currentAnnotations ? (
+        this.props.currentAnnotations &&
+        this.props.availableUsers ? (
           <Fragment>
             <StatementViewContent statement={this.props.currentStatement} />
             <AnnotationRail

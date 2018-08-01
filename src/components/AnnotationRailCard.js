@@ -40,7 +40,7 @@ class AnnotationRailCard extends Component {
               style={{ padding: "3px", verticalAlign: "center" }}
             >
               <div style={{ float: "left", fontWeight: "bold" }}>
-                {this.props.user.username}
+                {this.props.user.attributes.username}
               </div>
               <Card.Meta style={{ position: "absolute", right: 35, top: 0 }}>
                 {this.props.annotation.points}
@@ -80,8 +80,15 @@ class AnnotationRailCard extends Component {
               onClick={this.handleMinimizeClick}
             />
           </Card.Header>
-          <Card.Meta>{`Reputation: rep points go here`}</Card.Meta>
+          <Card.Meta>Reputation: {this.props.user.attributes.points}</Card.Meta>
           <Card.Description>{this.props.annotation.content}</Card.Description>
+          <Card.Meta floated="left" style={{ paddingTop: 10 }}>
+            Points: {this.props.annotation.points}
+          </Card.Meta>
+          {/* <div style={{ position: "absolute", left: "20%", top: "60%" }}>
+            <Icon size="small" name="minus" />
+            <Icon size="small" name="plus" />
+          </div> */}
         </Card.Content>
         <Card.Content extra>
           {this.props.comments.length ? (
