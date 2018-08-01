@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Image, Item } from "semantic-ui-react";
+import { Item } from "semantic-ui-react";
 import HomeStatementItem from "../components/HomeStatementItem";
 
 class HomeStatementList extends Component {

@@ -14,6 +14,10 @@ export const setCurrentAnnotations = annotations => ({
   annotations
 });
 
+export const clearCurrentAnnotations = () => ({
+  type: "CLEAR_CURRENT_ANNOTATIONS"
+});
+
 export const addPostedAnnotation = annotation => ({
   type: "ADD_POSTED_ANNOTATION",
   annotation
@@ -32,8 +36,9 @@ export const postAnnotation = annotationObj => {
     })
       .then(res => res.json())
       .then(json => {
-        const convertedAnnotation = convertPostedAnnotation(json.data)
-        dispatch(addPostedAnnotation(convertedAnnotation))});
+        const convertedAnnotation = convertPostedAnnotation(json.data);
+        dispatch(addPostedAnnotation(convertedAnnotation));
+      });
   };
 };
 

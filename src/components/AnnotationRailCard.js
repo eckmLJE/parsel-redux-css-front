@@ -28,31 +28,35 @@ class AnnotationRailCard extends Component {
     });
   };
 
-  renderLabel = () => (
-    <div
-      className="anno anno-label"
-      style={{ top: this.props.yPos - this.props.currentBoundingRectY }}
-    >
-      <Card>
-        <Card.Content style={{ padding: 0 }}>
-          <Card.Description style={{ padding: "3px", verticalAlign: "center" }}>
-            <div style={{ float: "left", fontWeight: "bold" }}>
-              {this.props.user.username}
-            </div>
-            <Card.Meta style={{ position: "absolute", right: 35, top: 0 }}>
-              {this.props.annotation.points}
-            </Card.Meta>
-            <Icon
-              size="large"
-              onClick={this.handleExpandClick}
-              name="angle down"
-              style={{ position: "absolute", right: 0, top: 0 }}
-            />
-          </Card.Description>
-        </Card.Content>
-      </Card>
-    </div>
-  );
+  renderLabel = () => {
+    return (
+      <div
+        className="anno anno-label"
+        style={{ top: this.props.yPos - this.props.currentBoundingRectY }}
+      >
+        <Card>
+          <Card.Content style={{ padding: 0 }}>
+            <Card.Description
+              style={{ padding: "3px", verticalAlign: "center" }}
+            >
+              <div style={{ float: "left", fontWeight: "bold" }}>
+                {this.props.user.username}
+              </div>
+              <Card.Meta style={{ position: "absolute", right: 35, top: 0 }}>
+                {this.props.annotation.points}
+              </Card.Meta>
+              <Icon
+                size="large"
+                onClick={this.handleExpandClick}
+                name="angle down"
+                style={{ position: "absolute", right: 0, top: 0 }}
+              />
+            </Card.Description>
+          </Card.Content>
+        </Card>
+      </div>
+    );
+  };
 
   renderCard = () => (
     <div
@@ -80,14 +84,16 @@ class AnnotationRailCard extends Component {
           <Card.Description>{this.props.annotation.content}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Button
-            size="small"
-            basic
-            floated="right"
-            onClick={this.handleCommentsClick}
-          >
-            Comments
-          </Button>
+          {this.props.comments.length ? (
+            <Button
+              size="small"
+              basic
+              floated="right"
+              onClick={this.handleCommentsClick}
+            >
+              Comments
+            </Button>
+          ) : null}
         </Card.Content>
         {this.state.commentsExpanded ? (
           <CommentsList comments={this.props.comments} />

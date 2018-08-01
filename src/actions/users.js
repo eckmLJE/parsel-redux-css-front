@@ -5,8 +5,10 @@ export const fetchUsers = () => {
     dispatch({ type: "START_FETCHING_USERS_REQUEST" });
     return fetch(usersUrl)
       .then(res => res.json())
-      .then(json =>
-        dispatch({ type: "ADD_USERS", users: json.data })
-      );
+      .then(json => dispatch({ type: "ADD_USERS", users: json.data }));
   };
 };
+
+export const clearUsers = () => ({
+  type: "CLEAR_CURRENT_USERS"
+});

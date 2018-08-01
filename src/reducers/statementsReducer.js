@@ -23,6 +23,11 @@ const statementsReducer = (
         availableStatements: action.statements,
         statementLoadingStatus: false
       };
+    case "CLEAR_CURRENT_STATEMENT":
+      return {
+        ...state,
+        currentStatement: null
+      };
     default:
       return state;
   }

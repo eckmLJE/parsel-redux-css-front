@@ -17,6 +17,10 @@ export const setCurrentStatement = statementId => {
   };
 };
 
+export const clearCurrentStatement = () => ({
+  type: "CLEAR_CURRENT_STATEMENT"
+});
+
 export const navToStatement = statementId => {
   return dispatch => {
     dispatch(push(`/statement/${statementId}`));

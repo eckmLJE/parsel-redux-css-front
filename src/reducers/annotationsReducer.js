@@ -17,6 +17,11 @@ const annotationsReducer = (
         ...state,
         currentAnnotations: action.annotations
       };
+    case "CLEAR_CURRENT_ANNOTATIONS":
+      return {
+        ...state,
+        currentAnnotations: []
+      };
     case "ADD_POSTED_ANNOTATION":
       return {
         ...state,

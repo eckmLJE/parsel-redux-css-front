@@ -43,7 +43,7 @@ button:active {
 }
 
 .home-statement-list {
-  padding: 25px;
+  padding: 100px;
   padding-top: 10px;
 }
 
@@ -84,12 +84,13 @@ button:active {
 .bottom-bar-text {
   position: relative;
   color: white;
-  font-size: 2em;
-  line-height: 2.5em;
+  font-size: 4em;
+  height: 100%;
   font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
   width: 50%;
   text-align: center;
   margin: auto;
+  padding: 20px;
 }
 
 .header-logo {
@@ -115,7 +116,7 @@ button:active {
   position: relative;
   width: 90%;
   font-size: 1.1em;
-  line-height: 1.3em;
+  line-height: 1.5em;
 }
 
 .statement-header {
