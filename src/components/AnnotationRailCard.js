@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Card, Icon, Button } from "semantic-ui-react";
+import colors from "../interpreters/colors";
 
 import { setExpandedAnnotation } from "../actions/annotations";
 
@@ -34,7 +35,7 @@ class AnnotationRailCard extends Component {
         className="anno anno-label"
         style={{ top: this.props.yPos - this.props.currentBoundingRectY }}
       >
-        <Card>
+        <Card color={`${colors[this.props.index]}`}>
           <Card.Content style={{ padding: 0 }}>
             <Card.Description
               style={{ padding: "3px", verticalAlign: "center" }}
@@ -71,7 +72,7 @@ class AnnotationRailCard extends Component {
               size="small"
               style={{ position: "absolute", left: -20, top: 5 }}
             />
-            {this.props.user.username}
+            {this.props.user.attributes.username}
             <Button
               size="mini"
               basic
@@ -82,15 +83,21 @@ class AnnotationRailCard extends Component {
           </Card.Header>
           <Card.Meta>Reputation: {this.props.user.attributes.points}</Card.Meta>
           <Card.Description>{this.props.annotation.content}</Card.Description>
-          <Card.Meta floated="left" style={{ paddingTop: 10 }}>
-            Points: {this.props.annotation.points}
-          </Card.Meta>
-          {/* <div style={{ position: "absolute", left: "20%", top: "60%" }}>
-            <Icon size="small" name="minus" />
-            <Icon size="small" name="plus" />
-          </div> */}
         </Card.Content>
         <Card.Content extra>
+          <Button
+            size="mini"
+            color="red"
+            content="Like"
+            icon="heart"
+            floated="left"
+            label={{
+              basic: true,
+              color: "red",
+              pointing: "left",
+              content: `${this.props.annotation.points}`
+            }}
+          />
           {this.props.comments.length ? (
             <Button
               size="small"

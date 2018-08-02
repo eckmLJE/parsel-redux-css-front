@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
+import { Header } from "semantic-ui-react";
+
 import { setCurrentStatement } from "../actions/statements";
 import { setBoundingRectY } from "../actions/highlights";
 import { fetchUsers } from "../actions/users";
@@ -36,6 +38,9 @@ class StatementView extends Component {
         this.props.currentAnnotations &&
         this.props.availableUsers ? (
           <Fragment>
+            <Header className="statement-header" as="h3">
+              {this.props.currentStatement.attributes.title}
+            </Header>
             <StatementViewContent statement={this.props.currentStatement} />
             <AnnotationRail
               annotations={this.props.currentStatement.attributes.annotations}

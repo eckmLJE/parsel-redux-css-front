@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Card, TextArea, Form, Button } from "semantic-ui-react";
 
 import { postAnnotation } from "../actions/annotations";
 
@@ -30,11 +31,29 @@ class SelectPopup extends Component {
         className="anno select-popup"
         style={{
           position: "absolute",
-          top: `${this.props.pos.popupY}px`,
+          top: `${this.props.pos.popupY + 40}px`,
           left: `${this.props.pos.popupX}px`
         }}
       >
-        <div className="select-header">New Annotation</div>
+        <Card>
+          <Card.Content>
+            <Form>
+              <TextArea
+                onChange={this.handleInput}
+                value={this.state.annotationInput}
+                placeholder="Enter your annotation"
+                style={{ minHeight: 100 }}
+              />
+            </Form>
+          </Card.Content>
+          <Button
+            content="Submit"
+            onClick={this.handleSubmit}
+            secondary
+            basic
+          />
+        </Card>
+        {/* <div className="select-header">New Annotation</div>
         <div className="select-input">
           <textarea
             onChange={this.handleInput}
@@ -45,7 +64,7 @@ class SelectPopup extends Component {
         </div>
         <div className="select-popup-submit">
           <button onClick={this.handleSubmit}>Submit</button>
-        </div>
+        </div> */}
       </div>
     );
   }

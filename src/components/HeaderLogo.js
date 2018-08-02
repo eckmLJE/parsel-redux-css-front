@@ -6,11 +6,9 @@ class HeaderLogo extends Component {
   render() {
     return (
       <Link to="/">
-        <img
-          className="header-logo"
-          alt=""
-          src="https://i.imgur.com/hPh3zTn.png"
-        />
+        <div className="header-logo">
+          <div className="header-s">PARSEL</div>
+        </div>
       </Link>
     );
   }

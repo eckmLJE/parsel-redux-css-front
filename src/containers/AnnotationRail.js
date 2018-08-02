@@ -23,22 +23,44 @@ class AnnotationRail extends Component {
     return this.props.comments.filter(comment => comment.annotation_id === id);
   };
 
+  renderAnnotationsArray = () => {
+    let annotationsArray = [];
+    let indexCounter = 0;
+    const highlights = this.props.currentHighlightPositions.sort((a, b) => a.start > b.start)
+    debugger
+    highlights.forEach(highlight => {
+      annotationsArray.push(
+        <AnnotationRailCard
+        key={highlight.id}
+        annotation={this.getAnnotationById(highlight.id)}
+        user={this.getUserById(highlight.id)}
+        comments={this.getCommentsById(highlight.id)}
+        yPos={highlight.position}
+        index={indexCounter}
+        />
+      );
+      indexCounter++
+    });
+    return annotationsArray;
+  };
+
   render() {
     return (
       <div className="statement-rail">
         {this.props.currentHighlightPositions.length &&
         this.props.currentBoundingRectY &&
         !this.props.annotationLoadingStatus
-          ? this.props.currentHighlightPositions.map(highlight => (
-              <AnnotationRailCard
-                key={highlight.id}
-                annotation={this.getAnnotationById(highlight.id)}
-                user={this.getUserById(highlight.id)}
-                comments={this.getCommentsById(highlight.id)}
-                yPos={highlight.position}
-              />
-            ))
-          : "Loading Annotations..."}
+          ? this.renderAnnotationsArray()
+          : // this.props.currentHighlightPositions.map(highlight => (
+            //     <AnnotationRailCard
+            //       key={highlight.id}
+            //       annotation={this.getAnnotationById(highlight.id)}
+            //       user={this.getUserById(highlight.id)}
+            //       comments={this.getCommentsById(highlight.id)}
+            //       yPos={highlight.position}
+            //     />
+            //   ))
+            "Loading Annotations..."}
       </div>
     );
   }

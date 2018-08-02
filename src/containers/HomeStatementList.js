@@ -1,18 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Item } from "semantic-ui-react";
+import { Item, Header, Divider } from "semantic-ui-react";
 import HomeStatementItem from "../components/HomeStatementItem";
 
 class HomeStatementList extends Component {
   render() {
     return (
       <Item.Group className="home-statement-list">
+        <Header as="h1" style={{marginBottom: 30}}>
+          Featured Statements
+        </Header>
+        {/* <Divider /> */}
         {this.props.availableStatements.map(statement => (
           <HomeStatementItem key={statement.id} statement={statement} />
         ))}
       </Item.Group>
-      // <div className="home-statement-list">
-      // </div>
     );
   }
 }
